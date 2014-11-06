@@ -1,0 +1,19 @@
+{
+	"doctorID": "DOC1",
+	"doctorName": "John Washton",
+	"address":"No 1 Hosptial, Beijin",
+	"additionalInfo":[
+		{
+			"name": "Available Apply Medicine Quantity",
+			"value": "10"
+		},
+		{
+			"name": "Applied Sample Before",
+			"value": "Yes"
+		},
+		{
+			"name": "Doctor Level",
+			"value": "1"
+		}
+	]
+}

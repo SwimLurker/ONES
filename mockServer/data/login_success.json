@@ -1,0 +1,9 @@
+{
+	"sessionID": "111111111",
+	"user":{
+		"username": "UserSR", 
+		"password": "passwordMD5", 
+		"role": 1, 
+		"avatarFilename": "avatar_sr.png"
+	}
+}

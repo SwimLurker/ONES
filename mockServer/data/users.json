@@ -1,0 +1,5 @@
+[
+	{"username": "UserSR", "password": "passwordMD5", "role": 1, "avatarFilename", "avatar_sr.png"},
+	{"username": "UserManager", "password": "passwordMD5", "role": 2, "avatarFilename", "avatar_manager.png"}
+	{"username": "UserAssistant", "password": "passwordMD5", "role": 3, "avatarFilename", "avatar_assistant.png"}
+]

@@ -1,0 +1,24 @@
+{
+	"appID": "APP20141016007",
+	"applySample": {
+		"sample": {
+			"sampleID": "SAMPLE-1",
+			"sampleName": "NovoRapid",
+			"sampleType": 1,
+			"samplePictureName":"novorapid.png"
+		},
+		"quantity": 2
+	},
+	"doctorName": "Chandler Li",
+	"sampleUsageAddress": "No. 1 Hospital, Beijin",
+	"applier": "UserSR",
+	"applyDate": "2014-10-20 00:00:00",
+	"lastModifyDate": "2014-10-20 00:00:00",
+	"status": 1,
+	"internalOrder":{
+		"internalOrderNo": "ORD-20141001001",
+		"deliveryAddress": "WFC, Street xxx, Road xxx",
+		"costCenter": "DBD",
+		"applyPurpose": "Trail"
+	}
+}

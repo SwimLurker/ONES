@@ -1,0 +1,39 @@
+[
+	{
+		"id": "MSG-1",
+		"title": "Message Approved by LEIT",
+		"content": "Message Approved by LEIT at 20130218\r\nComment:N/A....",
+		"sentDate": "2013-02-19 00:00:00",
+		"sender": "System",
+		"isRead": false
+	},{
+		"id": "MSG-2",
+		"title": "Message Rejected by LEIT",
+		"content": "Message Rejected by LEIT at 20131012\r\nComment:N/A....",
+		"sentDate": "2013-10-11 00:00:00",
+		"sender": "System",
+		"isRead": false
+	},{
+		"id": "MSG-3",
+		"title": "Sample received to your department",
+		"content": "Your applied sample(APP-20141001001) has been deliveried to your department,please go to receive sample",
+		"sentDate": "2014-01-06 00:00:00",
+		"sender": "System",
+		"isRead": true
+	},{
+		"id": "MSG-4",
+		"title": "Message Approved by LEIT",
+		"content": "Message Approved by LEIT at 20140502\r\nComment:N/A....",
+		"sentDate": "2014-05-02 00:00:00",
+		"sender": "System",
+		"isRead": false
+	},{
+		"id": "MSG-5",
+		"title": "Message Approved by LEIT",
+		"content": "Message Approved by LEIT at 20141001\r\nComment:N/A....",
+		"sentDate": "2014-10-01 00:00:00",
+		"sender": "System",
+		"isRead": true
+	}
+
+]

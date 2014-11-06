@@ -1,0 +1,169 @@
+{
+	"GET": {
+		"/snail/applications?sessionID=111111111&year=2014":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/applications2014.json"
+		},
+		"/snail/applications?sessionID=111111111":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+		},
+			"responseFile": "data/applications.json"
+		},
+		"/snail/applications?appID=&doctorName=&from=2014-09&sessionID=111111111&to=2014-10":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/applications_search.json",
+			"delayedMS": 2000
+		},
+		"/snail/users/UserSR/applications?sessionID=111111111&type=current":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/application_current.json"
+		},
+		"/snail/applications/APP20141016007/approvals?sessionID=111111111":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/application_approvalrecords.json"
+		},
+		"/snail/users/UserSR/messages?sessionID=111111111":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/messages.json"
+		},
+		"/snail/users/UserSR/doctors?sessionID=111111111":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/doctors.json"
+		},
+		"/snail/doctors?doctorName=John%20Washton&sessionID=111111111":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/doctorbyname.json"
+		},
+		"/snail/doctors/DOC1":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/doctor.json"
+		},
+		"/snail/users/UserSR/samples?sessionID=111111111":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/samples.json"
+		},
+		"/snail/samples?sampleName=NovoRapid&sessionID=111111111":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/sample.json"
+		},
+		"/snail/users":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/users.json"
+		},
+		"/snail/users/user?username=UserSR":{
+			"responseCode": 200,
+			"headers":{
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/user_sr.json"
+		},
+		"/error":{
+			"responseCode": 500,
+			"headers":{
+				"Content-Type": "text/plain"
+			},
+			"response": "Intenal Error!"
+		}
+	},
+	"POST": {
+		"/session":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/login_success.json",
+			"delayedMS": 3000
+		},
+		"/sessionfail":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/login_fail.json"
+		},
+		"/snail/applications":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/application_create.json"
+		}
+	},
+	"PUT": {
+		"/snail/applications/APP20141016007":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/application_update.json"
+		},
+		"/snail/users/UserSR/messages/MSG-1":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/message_read.json"
+		}
+
+	},
+	"DELETE": {
+		"/session?sessionID=111111111":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/logout.json"
+		},
+		"/snail/applications/APP20141016007?sessionID=111111111":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/cancel_application.json",
+			"delayedMS": 2000
+		},
+		"/snail/users/UserSR/messages/MSG-1?sessionID=111111111":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/delete_message.json",
+			"delayedMS": 1000
+		}
+	}
+}

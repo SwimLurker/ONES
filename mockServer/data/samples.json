@@ -1,0 +1,26 @@
+[
+	{
+		"sampleID": "SAMPLE-1",
+		"sampleName": "NovoRapid",
+		"sampleType": 1,
+		"samplePictureName": "novorapid.png"
+	},
+	{
+		"sampleID": "SAMPLE-2",
+		"sampleName": "Levemir",
+		"sampleType": 1,
+		"samplePictureName": "levemir.png"
+	},
+	{
+		"sampleID": "SAMPLE-3",
+		"sampleName": "NovoNorm",
+		"sampleType": 1,
+		"samplePictureName": "novonorm.png"
+	},
+	{
+		"sampleID": "SAMPLE-4",
+		"sampleName": "NovoPen",
+		"sampleType": 2,
+		"samplePictureName": "novopen.png"
+	}
+]
