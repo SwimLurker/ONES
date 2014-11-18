@@ -28,6 +28,9 @@ protocol SnailServerProtocol{
     func getUserAvailableSamples(sessionID: String, userID: String, onSucceed: ([Sample]?)->(), onFailed: (Error)->())
     func getSampleByName(sessionID: String, sampleName: String, onSucceed: (Sample?)->(), onFailed: (Error)->())
     func getUser(sessionID: String, userID:String, onSucceed: (User?)->(), onFailed: (Error)->())
+    func uploadApplicationSignatureImage(sessionID: String, applicationID: String, image: UIImage, onSucceed: ()->(), onFailed: (Error)->())
+    func getSignatureImage(sessionID: String, applicationID: String, onSucceed: (UIImage?)->(), onFailed: (Error)->())
+    
     
 }
 

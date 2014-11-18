@@ -218,4 +218,39 @@ class MockServer: SnailServerProtocol {
             onFailed(Error(errorCode: -999, errorMsg: "Please Login"))
         }
     }
+    
+    func uploadApplicationSignatureImage(sessionID: String, applicationID: String, image: UIImage, onSucceed: () -> (), onFailed: (Error) -> ()) {
+        if let session = Session.currentSession{
+            var path = NSHomeDirectory().stringByAppendingPathComponent("Documents/" + applicationID + ".png")
+            println(path)
+            UIImagePNGRepresentation(image).writeToFile(path, atomically: true)
+            
+            var result: Application?
+            var applications = session.currentUser.getAllApplications()
+            for app in applications{
+                if app.appID == applicationID{
+                    result = app
+                    break;
+                }
+            }
+            
+            if result != nil {
+                result!.status = ApplicationStatus.Signed
+            }
+            onSucceed()
+
+        }else{
+            onFailed(Error(errorCode: -999, errorMsg: "Please Login")) 
+        }
+    }
+    
+    func getSignatureImage(sessionID: String, applicationID: String, onSucceed: (UIImage?) -> (), onFailed: (Error) -> ()) {
+        if let session = Session.currentSession{
+            var path = NSHomeDirectory().stringByAppendingPathComponent("Documents/" + applicationID + ".png")
+            var image = UIImage(named: path)
+            onSucceed(image)
+        }else{
+            onFailed(Error(errorCode: -999, errorMsg: "Please Login"))
+        }
+    }
 }

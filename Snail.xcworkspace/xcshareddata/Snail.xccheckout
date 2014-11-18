@@ -12,20 +12,34 @@
 	<dict>
 		<key>0b2ef6a7-2fe4-4b33-af4e-9349becab923</key>
 		<string>svn://10.41.233.204:11123</string>
+		<key>9C26B7C877CCCE043CE1874E7DC9ACDC08725D89</key>
+		<string>https://github.com/SwimLurker/ONES.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Snail.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>0b2ef6a7-2fe4-4b33-af4e-9349becab923</key>
+		<string>../../Snail</string>
+		<key>9C26B7C877CCCE043CE1874E7DC9ACDC08725D89</key>
 		<string>..</string>
 	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/SwimLurker/ONES.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>0b2ef6a7-2fe4-4b33-af4e-9349becab923</string>
+	<string>9C26B7C877CCCE043CE1874E7DC9ACDC08725D89</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9C26B7C877CCCE043CE1874E7DC9ACDC08725D89</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ONES</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.subversion</string>

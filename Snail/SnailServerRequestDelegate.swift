@@ -76,7 +76,7 @@ class SnailServerRequestDelegate<T> {
     }
     
     func failed(error: NSError) {
-        handleFailure(Error(errorCode: -1, errorMsg: error.description))
+        handleFailure(error.snailError)
     }
     
     func handleFailure(error: Error){
@@ -92,6 +92,10 @@ class SnailServerRequestDelegate<T> {
         
         if succeedCallback2 != nil{
             succeedCallback2(obj!)
+        }
+        
+        if noArgsSucceedCallback != nil{
+            noArgsSucceedCallback()
         }
     }
     

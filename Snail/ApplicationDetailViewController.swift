@@ -39,6 +39,7 @@ class ApplicationDetailViewController: UITableViewController, RETableViewManager
     var deliveryAddressItem: RETextItem?
     var costCenterItem: RETextItem?
     var applyPurposeItem: RETextItem?
+    var signPictureItem: RETableViewItem?
     
     var waitingBar: MBProgressHUD?
     
@@ -297,6 +298,11 @@ class ApplicationDetailViewController: UITableViewController, RETableViewManager
             
             
         }
+        
+        if currentApplication.status == ApplicationStatus.Signed {
+            signPictureItem = RETableViewItem(title: "Sign Picture")
+            section.addItem(signPictureItem)
+        }
         manager!.addSection(section)
         
         let aprrovalHistorySection = RETableViewSection(headerTitle: "Approval History")
@@ -344,6 +350,14 @@ class ApplicationDetailViewController: UITableViewController, RETableViewManager
                     }
                 }
                 sampleItem?.reloadRowWithAnimation(UITableViewRowAnimation.None)
+            }
+        }
+        
+        if tableView == self.tableView{
+            if let itemLabel = tableView.cellForRowAtIndexPath(indexPath)?.textLabel!.text {
+                if itemLabel == "Sign Picture" {
+                    performSegueWithIdentifier("SignatureImage", sender: self)    
+                }
             }
         }
         
@@ -543,6 +557,15 @@ class ApplicationDetailViewController: UITableViewController, RETableViewManager
                 }else{
                     showErrorMsg(Error(errorCode: -2, errorMsg: "Login required"))
                 }
+            }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "SignatureImage" {
+            let sigImgController = segue.destinationViewController as SignatureImageViewController
+            if let curApp = currentApplication {
+                sigImgController.currentApplication = curApp
             }
         }
     }

@@ -92,12 +92,26 @@
 			},
 			"responseFile": "data/user_sr.json"
 		},
+		"/snail/applications/APP20141016007/signatureimg/APP20141016007.png?sessionID=111111111":{
+			"responseCode": 200,
+			"headers":{
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/signatureimg_APP20141016007.json"
+		},
 		"/error":{
 			"responseCode": 500,
 			"headers":{
 				"Content-Type": "text/plain"
 			},
 			"response": "Intenal Error!"
+		},
+		"/APP20141016007.png":{
+			"responseCode": 200,
+			"headers":{
+				"Content-Type": "image/png"
+			},
+			"responseFile": "image/APP20141016007.png"
 		}
 	},
 	"POST": {
@@ -122,10 +136,24 @@
 				"Content-Type": "application/json"
 			},
 			"responseFile": "data/application_create.json"
+		},
+		"/snail/applications/APP20141016007/signatureimg/APP20141016007.png":{
+			"responseCode": 200,
+			"headers":{
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/upload_signatureimg_APP20141016007.json"
 		}
 	},
 	"PUT": {
 		"/snail/applications/APP20141016007":{
+			"responseCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"responseFile": "data/application_update.json"
+		},
+		"/snail/applications/APP20140917008":{
 			"responseCode": 200,
 			"headers": {
 				"Content-Type": "application/json"

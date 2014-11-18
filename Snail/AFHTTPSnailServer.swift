@@ -391,6 +391,7 @@ class AFHTTPSnailServer: SnailServerProtocol{
             }
         )
     }
+    
     func getDoctorByName(sessionID: String, doctorName: String, onSucceed: (Doctor?) -> (), onFailed: (Error) -> ()) {
         
         var requestDelegate = GetDoctorByNameRequestDelegate(succeedCallback: onSucceed, failedCallback: onFailed)
@@ -443,6 +444,62 @@ class AFHTTPSnailServer: SnailServerProtocol{
         var url = Settings.userURL.stringByReplacingOccurrencesOfString("{userid}", withString: userID, options: nil, range: nil)
         
         var requestDelegate = GetUserRequestDelegate(succeedCallback: onSucceed, failedCallback: onFailed)
+        
+        var manager = AFHTTPRequestOperationManager()
+        manager.GET(url,
+            parameters: ["sessionID": sessionID],
+            success: { (operation, response) -> Void in
+                requestDelegate.requestSuccess(operation, responseObj: response)
+            }
+            ,failure: {(operation, error) -> Void in
+                requestDelegate.requestFailure(operation, error: error)
+            }
+        )
+    }
+    
+    func uploadApplicationSignatureImage(sessionID: String, applicationID: String, image: UIImage, onSucceed: () -> (), onFailed: (Error) -> ()) {
+        var url = Settings.signatureImgURL.stringByReplacingOccurrencesOfString("{appid}", withString: applicationID, options: nil, range: nil).stringByReplacingOccurrencesOfString("{imgid}", withString: applicationID+".png", options: nil, range: nil)
+        
+        var requestDelegate = SignApplicationRequestDelegate(succeedCallback: onSucceed, failedCallback: onFailed)
+        
+        var imageData = UIImagePNGRepresentation(image)
+        
+        var serializer = AFHTTPRequestSerializer()
+        
+        var request = serializer.multipartFormRequestWithMethod(
+            "POST",
+            URLString: url,
+            parameters: ["sessionID": sessionID],
+            constructingBodyWithBlock: { formData in
+                formData.appendPartWithFileData(imageData, name: "signImg", fileName: applicationID + ".png", mimeType: "image/png")
+            },
+            error: nil)
+        
+        
+        var manager = AFURLSessionManager(sessionConfiguration: NSURLSessionConfiguration.defaultSessionConfiguration())
+        manager.responseSerializer = AFHTTPResponseSerializer()
+        
+        var progress: NSProgress?
+        
+        var uploadTask = manager.uploadTaskWithStreamedRequest(request,
+            progress: &progress,
+            completionHandler: { (response, responseObj, error) in
+                if let err = error{
+                    requestDelegate.failed(err)
+                }else{
+                    if let res = response as? NSHTTPURLResponse{
+                        requestDelegate.finished(res.statusCode, responseData: responseObj as NSData)
+                    }
+                    
+                }
+            })
+        uploadTask.resume()
+    }
+    
+    func getSignatureImage(sessionID: String, applicationID: String, onSucceed: (UIImage?) -> (), onFailed: (Error) -> ()) {
+        var url = Settings.signatureImgURL.stringByReplacingOccurrencesOfString("{appid}", withString: applicationID, options: nil, range: nil).stringByReplacingOccurrencesOfString("{imgid}", withString: applicationID + ".png", options: nil, range: nil)
+        
+        var requestDelegate = SignatureImageRequestDelegate(succeedCallback: onSucceed, failedCallback: onFailed)
         
         var manager = AFHTTPRequestOperationManager()
         manager.GET(url,

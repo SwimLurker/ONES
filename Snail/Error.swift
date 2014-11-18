@@ -17,3 +17,9 @@ class Error{
         self.errorMsg = errorMsg
     }
 }
+
+extension NSError{
+    var snailError: Error{
+        return Error(errorCode: -1, errorMsg: self.description)
+    }
+}

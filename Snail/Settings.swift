@@ -107,4 +107,11 @@ class Settings{
             return serverURL + "/snail/users/{userid}"
         }
     }
+    
+    class var signatureImgURL: String{
+        get{
+            return serverURL + "/snail/applications/{appid}/signatureimg/{imgid}"
+        }
+    }
+
 }

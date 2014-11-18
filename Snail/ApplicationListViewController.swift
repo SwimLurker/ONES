@@ -16,7 +16,7 @@ enum SortRule: Int, Printable{
     }
 }
 
-class ApplicationListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UserInfoUpdateDelegate, ApplicationSearchDelegate{
+class ApplicationListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UserInfoUpdateDelegate, ApplicationSearchDelegate, ApplicationSignDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -363,8 +363,13 @@ class ApplicationListViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func signApplicationBtnClicked(sender: TableViewCellButton){
-        let alertView = UIAlertView(title: "TableViewCell Sign Button Clicked", message: "Application ID: \(sender.cellID)", delegate: self, cancelButtonTitle: "OK")
-        alertView.show()
+        for app in applications!{
+            if app.appID == sender.cellID{
+                selectedApplication = app
+                break
+            }
+        }
+        performSegueWithIdentifier("SignApplication", sender: self)
     }
     
     func searchBtnClicked(sender: UIButton){
@@ -443,6 +448,10 @@ class ApplicationListViewController: UIViewController, UITableViewDataSource, UI
 
             
             //navigationController?.pushViewController(newAppController, animated: true)
+        }else if segue.identifier == "SignApplication"{
+            let signAppVC = segue.destinationViewController as SignApplicationViewController
+            signAppVC.currentApplication = selectedApplication
+            signAppVC.delegate = self
         }else if segue.identifier == "Search"{
             let searchAppVC = segue.destinationViewController as SearchApplicationViewController
             searchAppVC.delegate = self
@@ -551,6 +560,15 @@ class ApplicationListViewController: UIViewController, UITableViewDataSource, UI
         selectedApplication = nil
         selectedIndexPath = nil
         tableView.reloadData()
+    }
+    
+    func sign(image: UIImage) {
+        presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+        userInfoUpdate()
+    }
+    
+    func cancelSign() {
+        presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
 }

@@ -12,7 +12,7 @@ protocol UserInfoUpdateDelegate{
     func userInfoUpdate()
 }
 
-class HomeViewController: UIViewController, UIAlertViewDelegate, UserInfoUpdateDelegate{
+class HomeViewController: UIViewController, UIAlertViewDelegate, UserInfoUpdateDelegate, ApplicationSignDelegate{
    
     
     @IBOutlet weak var userinfoPanel: UIView!
@@ -710,8 +710,7 @@ class HomeViewController: UIViewController, UIAlertViewDelegate, UserInfoUpdateD
     }
     
     func currentAppSignClicked(sender: UIButton){
-        let alertView = UIAlertView(title: "Current Application Sign Button Clicked", message: "Quiit System", delegate: self, cancelButtonTitle: "OK")
-        alertView.show()
+        performSegueWithIdentifier("SignApplication", sender: self)
     }
     
     func applySampleClicked(sender: UIButton){
@@ -781,6 +780,10 @@ class HomeViewController: UIViewController, UIAlertViewDelegate, UserInfoUpdateD
         }else if segue.identifier == "NewApplication"{
             let newApplicationController = segue.destinationViewController as NewApplicationViewController
             newApplicationController.userInfoDelegate = self
+        }else if segue.identifier == "SignApplication"{
+            let signApplicationController = segue.destinationViewController as SignApplicationViewController
+            signApplicationController.currentApplication = currentApplication
+            signApplicationController.delegate = self
         }else if segue.identifier == "CurrentYearApplicationList"{
             let applicationListController = segue.destinationViewController as ApplicationListViewController
             applicationListController.dataSourceType = "CurrentYear"
@@ -803,6 +806,15 @@ class HomeViewController: UIViewController, UIAlertViewDelegate, UserInfoUpdateD
     
     func userInfoUpdate() {
         updateUserInfo()
+    }
+    
+    func sign(image: UIImage) {
+        presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+        updateCurrentApplicationInfo()
+    }
+    
+    func cancelSign() {
+        presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 

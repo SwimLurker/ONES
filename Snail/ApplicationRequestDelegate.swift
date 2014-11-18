@@ -24,6 +24,10 @@ class _ApplicationRequestDelegate<T>: SnailServerRequestDelegate<T> {
         super.init(succeedCallback: succeedCallback, failedCallback: failedCallback, responseHandler: handleApplicationResponse)
     }
     
+    init(succeedCallback: (()->())?, failedCallback: ((Error)->())?){
+        super.init(noArgsSucceedCallback: succeedCallback, failedCallback: failedCallback, responseHandler: handleApplicationResponse)
+    }
+    
     func handleApplicationResponse(jsonObj: JSON) -> Any? {
         
         if jsonObj == JSON.Null(nil){

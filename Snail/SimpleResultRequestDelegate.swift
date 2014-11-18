@@ -14,6 +14,8 @@ typealias CancelApplicationRequestDelegate = _SimpleResultRequestDelegate<NullOb
 
 typealias DeleteMessageRequestDelegate = _SimpleResultRequestDelegate<NullObject>
 
+typealias SignApplicationRequestDelegate = _SimpleResultRequestDelegate<NullObject>
+
 class _SimpleResultRequestDelegate<T>: SnailServerRequestDelegate<T> {
     
     init(succeedCallback: (()->())?, failedCallback: ((Error)->())?){

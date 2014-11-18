@@ -367,6 +367,36 @@ class ASIHTTPSnailServer: NSObject, SnailServerProtocol, ASIHTTPRequestDelegate{
         request.startAsynchronous()
     }
     
+    func uploadApplicationSignatureImage(sessionID: String, applicationID: String, image: UIImage, onSucceed: () -> (), onFailed: (Error) -> ()) {
+        var requestURL: NSURL = NSURL.URLWithString(Settings.signatureImgURL.stringByReplacingOccurrencesOfString("{appid}", withString: applicationID, options: nil, range: nil).stringByReplacingOccurrencesOfString("{imgid}", withString: applicationID + ".png", options: nil, range: nil))
+        
+        var request = ASIFormDataRequest.requestWithURL(requestURL) as ASIFormDataRequest
+        
+        var imageData = UIImagePNGRepresentation(image)
+        
+        request.requestMethod = "Post"
+        
+        request.setPostValue(sessionID, forKey: "sessionID")
+        request.setData(imageData, withFileName: applicationID + ".png", andContentType: "image/png", forKey: "signImg")
+        request.delegate = self
+        
+        delegateDic.updateValue(SignApplicationRequestDelegate(succeedCallback: onSucceed, failedCallback: onFailed), forKey: request)
+        
+        request.startAsynchronous()
+    }
+    
+    
+    func getSignatureImage(sessionID: String, applicationID: String, onSucceed: (UIImage?) -> (), onFailed: (Error) -> ()) {
+        var requestURL: NSURL = NSURL.URLWithString(Settings.signatureImgURL.stringByReplacingOccurrencesOfString("{appid}", withString: applicationID, options: nil, range: nil).stringByReplacingOccurrencesOfString("{imgid}", withString: applicationID + ".png", options: nil, range: nil) + "?sessionID=" + sessionID)
+        var request = ASIHTTPRequest.requestWithURL(requestURL) as ASIHTTPRequest
+        request.requestMethod = "Get"
+        request.delegate = self
+        
+        delegateDic.updateValue(SignatureImageRequestDelegate(succeedCallback: onSucceed, failedCallback: onFailed), forKey: request)
+        
+        request.startAsynchronous()
+    }
+    
     func requestFinished(request: ASIHTTPRequest!) {
         let delegateObj = delegateDic.removeValueForKey(request)
         if let delegate = delegateObj as? LoginRequestDelegate{
@@ -404,6 +434,10 @@ class ASIHTTPSnailServer: NSObject, SnailServerProtocol, ASIHTTPRequestDelegate{
         }else if let delegate = delegateObj as? GetSampleByNameRequestDelegate{
             delegate.requestFinished(request)
         }else if let delegate = delegateObj as? GetUserRequestDelegate{
+            delegate.requestFinished(request)
+        }else if let delegate = delegateObj as? SignApplicationRequestDelegate{
+            delegate.requestFinished(request)
+        }else if let delegate = delegateObj as? SignatureImageRequestDelegate{
             delegate.requestFinished(request)
         }
 
@@ -446,6 +480,10 @@ class ASIHTTPSnailServer: NSObject, SnailServerProtocol, ASIHTTPRequestDelegate{
         }else if let delegate = delegateObj as? GetSampleByNameRequestDelegate{
             delegate.requestFailed(request)
         }else if let delegate = delegateObj as? GetUserRequestDelegate{
+            delegate.requestFailed(request)
+        }else if let delegate = delegateObj as? SignApplicationRequestDelegate{
+            delegate.requestFailed(request)
+        }else if let delegate = delegateObj as? SignatureImageRequestDelegate{
             delegate.requestFailed(request)
         }
     }
