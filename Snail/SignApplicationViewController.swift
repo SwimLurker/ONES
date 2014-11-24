@@ -19,7 +19,7 @@ class SignApplicationViewController: UIViewController, UIAlertViewDelegate {
     @IBOutlet weak var saveBtn: UIGlossyButton!
     @IBOutlet weak var cancelBtn: UIGlossyButton!
     
-    var canvasView: SignatureView!
+    @IBOutlet weak var signView: PPSSignatureView!
     
     var cancelAlertView: UIAlertView!
     var saveAlertView: UIAlertView!
@@ -37,7 +37,7 @@ class SignApplicationViewController: UIViewController, UIAlertViewDelegate {
         saveAlertView = UIAlertView(title: "Sign Application", message: "Do you want to save the signature?", delegate: self, cancelButtonTitle: "Cancle", otherButtonTitles: "OK")
         clearAlertView = UIAlertView(title: "Cancel", message: "Do you want to clear the signature?", delegate: self, cancelButtonTitle: "Cancle", otherButtonTitles: "OK")
         
-        canvasView = SignatureView(frame: CGRect(x: 22, y: 20, width: 497, height: 436))
+        //canvasView = PPSSignatureView(frame: CGRect(x: 22, y: 20, width: 497, height: 436))
             
         setButtonStyle(clearBtn, actionSelector: "clearBtnClicked:")
         setButtonStyle(saveBtn, actionSelector: "saveBtnClicked:")
@@ -104,7 +104,7 @@ class SignApplicationViewController: UIViewController, UIAlertViewDelegate {
             }
         }else if alertView == clearAlertView{
             if buttonIndex == 1{
-                canvasView.clear()
+                signView.erase()
             }
         }
     }
@@ -115,6 +115,9 @@ class SignApplicationViewController: UIViewController, UIAlertViewDelegate {
     }
     
     func saveToImage() -> UIImage{
+        
+        return signView.signatureImage
+        /*
         UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, false, 0)
         self.view.layer.renderInContext(UIGraphicsGetCurrentContext())
         var image = UIGraphicsGetImageFromCurrentImageContext()
@@ -122,7 +125,7 @@ class SignApplicationViewController: UIViewController, UIAlertViewDelegate {
         
         var signImg = UIImage(CGImage: CGImageCreateWithImageInRect(image.CGImage, canvasView.frame))
         
-        return signImg
+        return signImg*/
     }
 
 }

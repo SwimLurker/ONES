@@ -53,7 +53,7 @@ class SnailServer{
     }
     
     class var server: SnailServerProtocol{
-    return getServer("ASI")
+    return getServer("AF")
     }
     
 }
